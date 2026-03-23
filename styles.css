@@ -93,7 +93,19 @@
     align-items: center;
     gap: 0.5rem;
   }
-  .nav-logo span { color: var(--accent); }
+  .nav-logo span {
+    background: linear-gradient(90deg, var(--accent) 0%, #e2ff85 50%, var(--accent) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: greenSweep 3s ease-in-out infinite;
+  }
+  @keyframes greenSweep {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
   .nav-links {
     display: flex;
     gap: 2.5rem;

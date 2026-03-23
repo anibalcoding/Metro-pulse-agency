@@ -453,24 +453,24 @@
           <div class="form-row">
             <div class="form-field">
               <label for="fname">First Name</label>
-              <input type="text" id="fname" placeholder="Alex" required>
+              <input type="text" id="fname" name="fname" placeholder="Alex" required>
             </div>
             <div class="form-field">
               <label for="lname">Last Name</label>
-              <input type="text" id="lname" placeholder="Johnson" required>
+              <input type="text" id="lname" name="lname" placeholder="Johnson" required>
             </div>
           </div>
           <div class="form-field">
             <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="alex@yourbusiness.com" required>
+            <input type="email" id="email" name="email" placeholder="alex@yourbusiness.com" required>
           </div>
           <div class="form-field">
             <label for="business">Business / Brand Name</label>
-            <input type="text" id="business" placeholder="Your Business Name">
+            <input type="text" id="business" name="business" placeholder="Your Business Name">
           </div>
           <div class="form-field">
             <label for="industry">Industry</label>
-            <select id="industry">
+            <select id="industry" name="industry">
               <option value="" disabled selected>Select your industry</option>
               <option>DJ / Music / Events</option>
               <option>Fitness / Gym / Coaching</option>
@@ -484,7 +484,7 @@
           </div>
           <div class="form-field">
             <label for="package">Website Package</label>
-            <select id="package">
+            <select id="package" name="package">
               <option value="" disabled selected>Select a website package</option>
               <option>The All-In-One Solution ($599)</option>
               <option>E-Commerce Package ($999)</option>
@@ -494,7 +494,7 @@
           </div>
           <div class="form-field">
             <label for="hosting">Monthly Plan</label>
-            <select id="hosting" required>
+            <select id="hosting" name="hosting" required>
               <option value="" disabled selected>Select a monthly plan</option>
               <option>Hosting & Maintenance ($25/mo)</option>
               <option>Hosting, SEO & Updates ($75/mo)</option>
@@ -503,7 +503,7 @@
           </div>
           <div class="form-field">
             <label for="message">Anything else? (optional)</label>
-            <textarea id="message" placeholder="Tell me a bit about your project or what you're looking for..."></textarea>
+            <textarea id="message" name="message" placeholder="Tell me a bit about your project or what you're looking for..."></textarea>
           </div>
           <button type="submit" class="btn-submit">Book My Free Call →</button>
           <p class="form-note">We respond within 24 hours. No spam, ever.</p>

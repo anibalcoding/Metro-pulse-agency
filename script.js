@@ -137,10 +137,35 @@
   });
 
   // FORM SUBMIT
-  document.getElementById('theForm').addEventListener('submit', e => {
+  document.getElementById('theForm').addEventListener('submit', async e => {
     e.preventDefault();
-    document.getElementById('bookingForm').style.display = 'none';
-    document.getElementById('successMsg').classList.add('show');
+    const form = e.target;
+    const btn  = form.querySelector('.btn-submit');
+    const orig = btn.textContent;
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res  = await fetch('contact.php', {
+        method: 'POST',
+        body: new FormData(form)
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        document.getElementById('bookingForm').style.display = 'none';
+        document.getElementById('successMsg').classList.add('show');
+      } else {
+        alert(data.message || 'Something went wrong. Please try again.');
+        btn.textContent = orig;
+        btn.disabled = false;
+      }
+    } catch {
+      alert('Could not send your request. Please try again.');
+      btn.textContent = orig;
+      btn.disabled = false;
+    }
   });
 
   // HERO ENTRANCE
