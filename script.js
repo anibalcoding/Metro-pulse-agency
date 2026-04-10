@@ -14,7 +14,9 @@
 
   // NAV SCROLL
   const navbar = document.getElementById('navbar');
+  const hero = document.querySelector('.hero');
   window.addEventListener('scroll', () => {
+    navbar.classList.toggle('nav-visible', window.scrollY > 500);
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 
@@ -36,7 +38,16 @@
       }
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal, .gallery-item, .process-step, .pricing-card, .pricing-card-custom').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .gallery-item, .process-step, .pricing-card, .pricing-card-custom, .industry-card').forEach(el => observer.observe(el));
+
+  // SERVICE ROWS ACCORDION
+  document.querySelectorAll('.service-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const isOpen = row.classList.contains('open');
+      document.querySelectorAll('.service-row.open').forEach(r => r.classList.remove('open'));
+      if (!isOpen) row.classList.add('open');
+    });
+  });
 
   // FILTER
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -84,8 +95,9 @@
         lbVideo.removeAttribute('src');
         lbVideo.load();
       } else if (video) {
+        const lightboxSrc = item.dataset.lightboxVideo;
         const source = video.querySelector('source');
-        lbVideo.src = source ? source.src : video.currentSrc;
+        lbVideo.src = lightboxSrc || (source ? source.src : video.currentSrc);
         lbVideo.hidden = false;
         lbImg.hidden = true;
         lbImg.removeAttribute('src');
