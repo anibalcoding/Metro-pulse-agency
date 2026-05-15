@@ -23,22 +23,130 @@
   // MOBILE MENU
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobile() { mobileMenu.classList.remove('open'); }
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+  function openMobile() {
+    mobileMenu.classList.add('open');
+    navbar.classList.add('menu-open');
+  }
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    navbar.classList.remove('menu-open');
+  }
+
+  hamburger.addEventListener('click', openMobile);
+  mobileMenuClose.addEventListener('click', closeMobile);
   document.querySelectorAll('.mobile-menu-link').forEach(link => {
     link.addEventListener('click', closeMobile);
   });
 
-  // INTERSECTION OBSERVER
+  // SCROLL PROGRESS BAR
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+
+  // INJECT SECTION BACKGROUND SHAPES
+  const shapeDefs = [
+    { sel: '.about',
+      html: `<div class="ss-orb ss-orb-br"></div>
+             <div class="ss-ring ss-ring-tl"></div>
+             <div class="ss-dot" style="top:18%;right:6%"></div>
+             <div class="ss-dot ss-dot-sm" style="bottom:28%;left:14%"></div>
+             <div class="ss-dot ss-dot-sm" style="top:42%;right:18%"></div>` },
+    { sel: '.full-picture',
+      html: `<div class="ss-orb ss-orb-tl"></div>
+             <div class="ss-ring ss-ring-br"></div>
+             <div class="ss-ring ss-ring-sm" style="top:35%;right:4%"></div>
+             <div class="ss-dot" style="top:55%;right:8%"></div>
+             <div class="ss-grid"></div>` },
+    { sel: '.industries',
+      html: `<div class="ss-grid"></div>
+             <div class="ss-orb ss-orb-tr"></div>
+             <div class="ss-ring ss-ring-sm" style="bottom:8%;left:4%"></div>
+             <div class="ss-dot" style="top:20%;left:8%"></div>
+             <div class="ss-dot ss-dot-sm" style="bottom:22%;right:10%"></div>` },
+    { sel: '.process',
+      html: `<div class="ss-ring ss-ring-lg ss-ring-left"></div>
+             <div class="ss-orb ss-orb-tr"></div>
+             <div class="ss-dot" style="top:12%;right:8%"></div>
+             <div class="ss-dot ss-dot-sm" style="top:58%;right:22%"></div>
+             <div class="ss-dot ss-dot-sm" style="bottom:18%;left:18%"></div>` },
+    { sel: '.pricing',
+      html: `<div class="ss-ring ss-ring-tr"></div>
+             <div class="ss-orb ss-orb-bl"></div>
+             <div class="ss-dot" style="top:25%;right:6%"></div>` },
+    { sel: '.booking',
+      html: `<div class="ss-orb ss-orb-tr"></div>
+             <div class="ss-ring ss-ring-bl"></div>
+             <div class="ss-dot" style="top:30%;left:6%"></div>
+             <div class="ss-dot ss-dot-sm" style="bottom:25%;right:6%"></div>` },
+  ];
+  shapeDefs.forEach(({ sel, html }) => {
+    const section = document.querySelector(sel);
+    if (!section) return;
+    const container = document.createElement('div');
+    container.className = 'ss';
+    container.setAttribute('aria-hidden', 'true');
+    container.innerHTML = html;
+    section.prepend(container);
+  });
+
+  // SCROLL-DRIVEN PARALLAX + RING DRIFT
+  function onScroll() {
+    const sy = window.scrollY;
+    const maxH = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${sy / maxH})`;
+
+    document.querySelectorAll('.ss-orb').forEach(el => {
+      const section = el.closest('section');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+      const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
+      el.style.transform = `translateY(${mid * 0.06}px)`;
+    });
+    document.querySelectorAll('.ss-ring').forEach((el, i) => {
+      const section = el.closest('section');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+      const dir = i % 2 === 0 ? 1 : -1;
+      const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
+      el.style.transform = `translateY(${mid * 0.03}px) rotate(${sy * 0.015 * dir}deg)`;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // INTERSECTION OBSERVER — handles all reveal variants + stagger
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.classList.add('visible');
-        // stagger children for process steps
-      }
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal, .gallery-item, .process-step, .pricing-card, .pricing-card-custom, .industry-card').forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .reveal-scale, .gallery-item, .pricing-card, .pricing-card-custom'
+  ).forEach(el => observer.observe(el));
+
+  // STAGGER OBSERVER — for process steps, fp-steps, industry cards
+  const staggerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const children = entry.target.querySelectorAll(
+        '.process-step, .fp-step, .industry-card, .fp-item'
+      );
+      children.forEach((child, i) => {
+        child.style.transitionDelay = `${i * 0.1}s`;
+        setTimeout(() => child.classList.add('visible'), i * 100);
+      });
+      staggerObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.process-steps, .fp-steps, .industries-grid, .fp-package-right').forEach(c => {
+    staggerObserver.observe(c);
+  });
 
   // SERVICE ROWS ACCORDION
   document.querySelectorAll('.service-row').forEach(row => {

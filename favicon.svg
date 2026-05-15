@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0d0d0d"/>
+  <!-- screen lid -->
+  <rect x="6" y="7" width="20" height="13" rx="1.5" fill="none" stroke="#c8f53f" stroke-width="1.8"/>
+  <!-- screen inner -->
+  <rect x="8" y="9" width="16" height="9" rx="0.5" fill="#c8f53f" opacity="0.15"/>
+  <!-- base -->
+  <path d="M4 22 H28 L26 25 H6 Z" fill="#c8f53f"/>
+  <!-- hinge line -->
+  <line x1="6" y1="20" x2="26" y2="20" stroke="#c8f53f" stroke-width="1.2"/>
+</svg>

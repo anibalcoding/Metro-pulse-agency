@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Metro Pulse Agency</title>
+<meta name="description" content="Metro Pulse Agency has been building high-performing websites for small businesses since 2019. We combine deep marketing expertise with technical development so your site actually gets you customers.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://metropulseagency.com/about-us.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://metropulseagency.com/about-us.html">
+<meta property="og:title" content="About Us — Metro Pulse Agency">
+<meta property="og:description" content="We've been building websites that work for small businesses since 2019. Full packages. Real results.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* PAGE-SPECIFIC STYLES */
+  .about-page-hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14rem 2rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-page-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,245,63,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-page-hero .section-label {
+    margin-bottom: 1.5rem;
+  }
+  .about-page-hero .hero-headline {
+    font-size: clamp(3rem, 8vw, 7rem);
+    margin-bottom: 1.5rem;
+  }
+  .about-page-hero .hero-sub {
+    max-width: 640px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .about-story {
+    padding: 6rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .about-story-left .section-label { margin-bottom: 1rem; }
+  .about-story-left h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .about-story-left p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+  .about-story-left p strong { color: var(--text); font-weight: 500; }
+  .about-story-left p span { color: var(--accent); }
+
+  .about-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .about-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem 1.5rem;
+  }
+  .about-stat-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .about-stat-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .about-pillars {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 6rem 2rem;
+  }
+  .about-pillars-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .about-pillars-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .about-pillars-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    margin-top: 0.75rem;
+  }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .pillar {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.8rem;
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: var(--accent); }
+  .pillar-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .pillar h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .pillar p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .about-cta {
+    padding: 7rem 2rem;
+    text-align: center;
+  }
+  .about-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .about-cta p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .about-story {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .pillar-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-stat-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo-transparent.png" alt="Metro Pulse Agency" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="about-us.html">About Us</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#booking" class="nav-cta">Book a Call</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="about-us.html" class="mobile-menu-link">About Us</a></li>
+    <li><a href="index.html#process" class="mobile-menu-link">Process</a></li>
+    <li><a href="index.html#pricing" class="mobile-menu-link">Pricing</a></li>
+    <li><a href="index.html#booking" class="mobile-menu-link">Book a Call</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="about-page-hero">
+  <div class="section-label reveal">We're Metro Pulse Agency</div>
+  <h1 class="hero-headline reveal delay-100">
+    Built to Get You<br><em>More Customers.</em>
+  </h1>
+  <p class="hero-sub reveal delay-200">
+    We're a small, focused agency that has been helping small businesses build websites that actually work since 2019. No bloat, no fluff — just real results.
+  </p>
+</section>
+
+<!-- STORY -->
+<section class="about-story">
+  <div class="about-story-left reveal-left">
+    <div class="section-label">Our Story</div>
+    <h2>We Do the<br>Hard Work<br>For You.</h2>
+    <p>
+      Since 2019, we've been in the trenches building websites for small business owners who are too busy running their business to deal with the technical side of getting found online. So we handle all of it.
+    </p>
+    <p>
+      We come from both worlds — <strong>deep marketing experience</strong> and <strong>hands-on web development</strong>. That means we don't just build a site that looks good. We build one that ranks, converts, and grows with you.
+    </p>
+    <p>
+      Most agencies make you choose: get a developer who doesn't understand marketing, or get a marketer who can't build anything. We're both. That's the edge our clients get from day one.
+    </p>
+    <p>
+      Every client gets a <span>full package</span> — custom website, on-page SEO, Google Business Profile setup, and Search Console connection. We don't hand you a half-finished site and wish you luck.
+    </p>
+  </div>
+  <div class="about-stat-grid reveal-right delay-100">
+    <div class="about-stat">
+      <div class="about-stat-num">2019</div>
+      <div class="about-stat-label">Year Founded</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num">100%</div>
+      <div class="about-stat-label">Client Satisfaction</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num">Full</div>
+      <div class="about-stat-label">Package Every Time</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num">0</div>
+      <div class="about-stat-label">Surprise Invoices</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="about-pillars">
+  <div class="about-pillars-inner">
+    <div class="about-pillars-header">
+      <div class="section-label reveal">What We Bring to the Table</div>
+      <h2 class="reveal delay-100">Why Clients<br>Choose Us.</h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal delay-100">
+        <div class="pillar-num">01</div>
+        <h3>Marketing First</h3>
+        <p>We don't just build sites — we build them with a conversion strategy baked in. Every layout decision, every headline, every CTA is designed to turn visitors into paying customers.</p>
+      </div>
+      <div class="pillar reveal delay-200">
+        <div class="pillar-num">02</div>
+        <h3>We Do Everything</h3>
+        <p>Design, development, copywriting, SEO, Google Business Profile, Search Console — you hand us the keys and we take care of all of it. You stay focused on running your business.</p>
+      </div>
+      <div class="pillar reveal delay-300">
+        <div class="pillar-num">03</div>
+        <h3>Built for Small Business</h3>
+        <p>We've worked exclusively with small business owners since day one. We know your challenges, your budget reality, and what actually moves the needle for businesses like yours.</p>
+      </div>
+      <div class="pillar reveal delay-100">
+        <div class="pillar-num">04</div>
+        <h3>SEO From the Start</h3>
+        <p>Every site we build is optimized to rank. On-page SEO, clean code structure, fast load times, and Search Console connected before we hand it over. No add-ons, no extras — it's included.</p>
+      </div>
+      <div class="pillar reveal delay-200">
+        <div class="pillar-num">05</div>
+        <h3>Custom Pricing</h3>
+        <p>We don't do cookie-cutter packages with features you don't need. We scope your project specifically, quote you a price, and that's what you pay. No surprise invoices.</p>
+      </div>
+      <div class="pillar reveal delay-300">
+        <div class="pillar-num">06</div>
+        <h3>Fast Turnaround</h3>
+        <p>We run a tight, proven process. Most clients go from kickoff to a live, lead-generating site in a matter of days — not months. Because you can't afford to wait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <h2 class="reveal">Ready to Stop<br><em>Leaving Leads Behind?</em></h2>
+  <p class="reveal delay-100">Book a free 15-minute call. We'll map out exactly what your business needs to start showing up and getting customers online.</p>
+  <a href="index.html#booking" class="btn-primary reveal delay-200">Book a Free Call →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo-transparent.png" alt="Metro Pulse Agency" class="footer-logo-img"></div>
+  <ul class="footer-links">
+    <li><a href="about-us.html">About Us</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#booking">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Metro Pulse Agency. Built to get you leads.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
